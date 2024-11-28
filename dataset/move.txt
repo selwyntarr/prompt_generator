@@ -1,0 +1,39 @@
+Insert object to the direction of ref_obj
+Insert object direction of ref_obj
+Insert object from direction of ref_obj
+
+Insert object num units away to the direction of ref_obj 
+Insert object num units direction of ref_obj 
+Insert object num units away from direction of ref_obj
+
+Spawn object to the direction of ref_obj
+Spawn object direction of ref_obj
+Spawn object from direction of ref_obj
+
+Spawn object num units away to the direction of ref_obj 
+Spawn object num units direction of ref_obj 
+Spawn object num units away from direction of ref_obj
+
+Add object to the direction of ref_obj
+Add object direction of ref_obj
+Add object from direction of ref_obj
+
+Add object num units away to the direction of ref_obj 
+Add object num units direction of ref_obj 
+Add object num units away from direction of ref_obj
+
+Put object to the direction of ref_obj
+Put object direction of ref_obj
+Put object from direction of ref_obj
+
+Put object num units away to the direction of ref_obj 
+Put object num units direction of ref_obj 
+Put object num units away from direction of ref_obj
+
+Place object to the direction of ref_obj
+Place object direction of ref_obj
+Place object from direction of ref_obj
+
+Place object num units away to the direction of ref_obj 
+Place object num units direction of ref_obj 
+Place object num units away from direction of ref_obj
