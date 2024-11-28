@@ -1,7 +1,7 @@
 import random
 
 def random_num():
-    return str(random.randint(1, 10))
+    return str(random.randint(1, 9))
 
 def random_unit():
     units = ["units", "meters", "inches"]
@@ -29,7 +29,7 @@ def random_direction():
     except FileNotFoundError:
         return "missing"
 
-def random_move():
+def random_spawn():
     try:
         with open("dataset/move.txt", "r") as file:
             lines = [line.strip() for line in file.readlines() if line.strip()]

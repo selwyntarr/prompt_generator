@@ -1,5 +1,5 @@
 {
-    "action": "move",
+    "action": "spawn",
     "parameters": {
         "prefab": "object",
         "reference_object": "ref_obj",

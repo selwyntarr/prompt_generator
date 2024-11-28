@@ -13,8 +13,8 @@ def get_json(action):
     except json.JSONDecodeError:
         print("Error decoding JSON from the file.") 
 
-def get_move():
-    prompt = random_move()
+def get_spawn():
+    prompt = random_spawn()
 
     prompt = prompt.replace("object", random_object())
     prompt = prompt.replace("direction", random_direction())

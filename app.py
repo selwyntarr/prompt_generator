@@ -6,7 +6,7 @@ import os
 
 from generate_prompts import (
     get_json,
-    get_move
+    get_spawn
 )
 
 # Initialize session state for the text input
@@ -55,11 +55,11 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Spawn", use_container_width=True):
         # get random move prompt
-        prompt = get_move()
+        prompt = get_spawn()
         update_text_field(prompt)
 
         # setup default move json
-        formatted_json = get_json("move")
+        formatted_json = get_json("spawn")
         update_text_area(formatted_json)
 
 with col2:
