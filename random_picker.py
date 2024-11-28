@@ -31,7 +31,7 @@ def random_direction():
 
 def random_spawn():
     try:
-        with open("dataset/move.txt", "r") as file:
+        with open("dataset/spawn.txt", "r") as file:
             lines = [line.strip() for line in file.readlines() if line.strip()]
             if lines:
                 return random.choice(lines).strip()
