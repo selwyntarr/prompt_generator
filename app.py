@@ -3,10 +3,6 @@ import pandas as pd
 import json
 import os
 
-from streamlit_gsheets import GSheetsConnection
-
-conn = st.connection("gsheets", type=GSheetsConnection)
-
 from generate_prompts import (
     get_json,
     get_spawn,
@@ -54,15 +50,6 @@ def append_data():
 
         st.session_state.df = st.session_state.df._append(new_data, ignore_index=True)
 
-        df = pd.DataFrame([new_data])
-
-        existing_data = conn.read(worksheet="Spawn")
-        combined_data = existing_data + df.values.tolist()
-        conn.update(worksheet="Spawn", data=combined_data)
-        
-        st.cache_data.clear()
-        st.rerun()
-        
 # App Title
 st.title("Prompt Generator")
 
