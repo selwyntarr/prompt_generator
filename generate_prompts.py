@@ -25,3 +25,9 @@ def get_spawn():
     prompt = prompt.replace("units", unit)
 
     return prompt
+
+def get_remove():
+    prompt = random_remove()
+    prompt = prompt.replace("object", random_object())
+
+    return prompt

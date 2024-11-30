@@ -6,7 +6,8 @@ import os
 
 from generate_prompts import (
     get_json,
-    get_spawn
+    get_spawn,
+    get_remove
 )
 
 # Initialize session state for the text input
@@ -68,7 +69,11 @@ with col2:
 
 with col3:
     if st.button("Remove", use_container_width=True):
-        update_text_field("Remove button clicked!")
+        prompt = get_remove()
+        update_text_field(prompt)
+
+        formatted_json = get_json("remove")
+        update_text_field(formatted_json)
 
 with col4:
     if st.button("Rotate", use_container_width=True):

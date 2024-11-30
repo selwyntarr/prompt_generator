@@ -1,0 +1,6 @@
+{
+    "action": "remove",
+    "parameters": {
+        "prefab": "object"
+    }
+}

@@ -40,3 +40,15 @@ def random_spawn():
     except FileNotFoundError:
         return "missing"
 
+def random_remove():
+    try:
+        with open("dataset/remove.txt", "r") as file:
+            lines = [line.strip() for line in file.readlines() if line.strip()]
+            if lines:
+                return random.choice(lines).strip()
+            else:
+                return None
+    except FileNotFoundError:
+        return "missing"
+
+
