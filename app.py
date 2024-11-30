@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+import time
 
 from generate_prompts import (
     get_json,
@@ -67,6 +68,8 @@ with col1:
         #formatted_json = get_json("spawn")
         update_text_area(formatted_json)
 
+        append_data()
+
 with col2:
     if st.button("Move", use_container_width=True):
         prompt, formatted_json = get_move()
@@ -74,6 +77,8 @@ with col2:
 
         # formatted_json = get_json("move")
         update_text_area(formatted_json)
+
+        append_data()
 
 with col3:
     if st.button("Remove", use_container_width=True):
@@ -83,6 +88,8 @@ with col3:
         #formatted_json = get_json("remove")
         update_text_area(formatted_json)
 
+        append_data()
+
 with col4:
     if st.button("Rotate", use_container_width=True):
         prompt, formatted_json = get_rotate()
@@ -90,6 +97,8 @@ with col4:
 
         # formatted_json = get_json("rotate")
         update_text_area(formatted_json)
+
+        append_data()
 
 with col5:
     if st.button("Replace", use_container_width=True):
@@ -99,6 +108,8 @@ with col5:
         #formatted_json = get_json("replace")
         update_text_area(formatted_json)
 
+        append_data()
+
 # Text Field (uses session state for dynamic updates)
 text_input = st.text_input("Prompt Sample:", value=st.session_state.text_field_value)
 
@@ -107,12 +118,14 @@ text_area = st.text_area("Formatted JSON:", value=st.session_state.text_area_val
 
 col6, col7 = st.columns(2)
 
-with col6:
-    st.button("Clear", use_container_width=True, on_click=clear_form)
 
-with col7:
-    st.button("Add", use_container_width=True, on_click=append_data)
+# with col6:
+#     st.button("Clear", use_container_width=True, on_click=clear_form)
 
+# with col7:
+#     st.button("Add", use_container_width=True, on_click=append_data)
+
+    
 # Show DataFrame here and make it cover the whole container width
 sorted_df = st.session_state.df.sort_index(ascending=False)
 
