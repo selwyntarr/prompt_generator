@@ -1,2 +1,8 @@
-Move object num to the direction
+Move object with num units to the direction
+
+Push object with num units to the direction
+
+Displace object with num units to the direction
+
+Offset object with num units to the direction
 

@@ -1,9 +1,7 @@
 {
-    "action": "spawn",
+    "action": "replace",
     "parameters": {
         "prefab": "object",
-        "reference_object": "ref_obj",
-        "direction": "direction",
-        "value": "1"
+        "object_to_replace": "rep_obj"
     }
 }

@@ -1,3 +1,6 @@
 Remove object
 Remove the object
 
+Delete object
+Delete the object
+
