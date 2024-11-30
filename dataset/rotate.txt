@@ -1,12 +1,12 @@
-Rotate object with num degrees at the x axis 
-Rotate object with num degrees at the y axis 
-Rotate object with num degrees at the z axis 
+Rotate object with num degrees at the axs axis 
+Rotate object with num degrees at the axs axis 
+Rotate object with num degrees at the axs axis 
 
-Tilt object with num degrees at the x axis 
-Tilt object with num degrees at the y axis 
-Tilt object with num degrees at the z axis 
+Tilt object with num degrees at the axs axis 
+Tilt object with num degrees at the axs axis 
+Tilt object with num degrees at the axs axis 
 
-Turn object with num degrees at the x axis 
-Turn object with num degrees at the y axis 
-Turn object with num degrees at the z axis 
+Turn object with num degrees at the axs axis 
+Turn object with num degrees at the axs axis 
+Turn object with num degrees at the axs axis 
 

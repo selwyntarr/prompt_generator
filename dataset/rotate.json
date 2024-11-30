@@ -2,7 +2,7 @@
     "action": "rotate",
     "parameters": {
         "prefab": "object",
-        "axis": "axis",
+        "axis": "x",
         "value": "1"
     }
 }

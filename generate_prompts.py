@@ -16,47 +16,109 @@ def get_json(action):
 def get_spawn():
     prompt = random_spawn()
 
-    prompt = prompt.replace("object", random_object())
-    prompt = prompt.replace("direction", random_direction())
-    prompt = prompt.replace("ref_obj", random_object())
-    prompt = prompt.replace("num", random_num())
+    prefab = random_object()
+    reference_prefab = random_object()
+    direction = random_direction()
+    number = random_num()
+
+    prompt = prompt.replace("object", prefab)
+    prompt = prompt.replace("direction", direction)
+    prompt = prompt.replace("ref_obj", reference_prefab)
+    prompt = prompt.replace("num", number)
 
     unit = random_unit().rstrip('es').rstrip('s') if "1" in prompt else random_unit()
     prompt = prompt.replace("units", unit)
 
-    return prompt
+    with open('dataset/spawn.json', 'r') as file:
+        data = json.load(file)
+
+        data['parameters']['prefab'] = prefab
+        data['parameters']['reference_object'] = reference_prefab
+        data['parameters']['direction'] = direction
+        data['parameters']['value'] = number
+
+        formatted_json = json.dumps(data, indent=4)
+
+    return prompt, formatted_json
 
 def get_move():
     prompt = random_move()
 
-    prompt = prompt.replace("object", random_object())
-    prompt = prompt.replace("direction", random_direction())
-    prompt = prompt.replace("num", random_num())
+    prefab = random_object()
+    direction = random_direction()
+    number = random_num()
+
+    prompt = prompt.replace("object", prefab)
+    prompt = prompt.replace("direction", direction)
+    prompt = prompt.replace("num", number)
 
     unit = random_unit().rstrip('es').rstrip('s') if "1" in prompt else random_unit()
     prompt = prompt.replace("units", unit)
 
-    return prompt
+    with open('dataset/move.json', 'r') as file:
+        data = json.load(file)
+
+        data['parameters']['prefab'] = prefab
+        data['parameters']['direction'] = direction
+        data['parameters']['value'] = number
+
+        formatted_json = json.dumps(data, indent=4)
+
+    return prompt, formatted_json
 
 def get_remove():
     prompt = random_remove()
-    prompt = prompt.replace("object", random_object())
 
-    return prompt
+    prefab = random_object()
+
+    prompt = prompt.replace("object", prefab)
+
+    with open('dataset/remove.json', 'r') as file:
+        data = json.load(file)
+
+        data['parameters']['prefab'] = prefab
+
+        formatted_json = json.dumps(data, indent=4)
+
+    return prompt, formatted_json
 
 def get_rotate():
     prompt = random_rotate()
 
-    prompt = prompt.replace("object", random_object())
-    prompt = prompt.replace("x", random_axis())
-    prompt = prompt.replace("num", random_degrees())
+    prefab = random_object()
+    axis = random_axis()
+    degrees = random_degrees()
 
-    return prompt
+    prompt = prompt.replace("object", prefab)
+    prompt = prompt.replace("axs", axis)
+    prompt = prompt.replace("num", degrees)
+
+    with open('dataset/rotate.json', 'r') as file:
+        data = json.load(file)
+
+        data['parameters']['prefab'] = prefab
+        data['parameters']['axis'] = axis
+        data['parameters']['value'] = degrees
+
+        formatted_json = json.dumps(data, indent=4)
+
+    return prompt, formatted_json
 
 def get_replace():
     prompt = random_replace()
 
-    prompt = prompt.replace("object", random_object())
-    prompt = prompt.replace("ref_obj", random_object())
+    prefab = random_object()
+    object_to_replace = random_object()
 
-    return prompt
+    prompt = prompt.replace("object", prefab)
+    prompt = prompt.replace("rep_obj", object_to_replace)
+
+    with open('dataset/replace.json', 'r') as file:
+        data = json.load(file)
+
+        data['parameters']['prefab'] = prefab
+        data['parameters']['object_to_replace'] = object_to_replace
+
+        formatted_json = json.dumps(data, indent=4)
+
+    return prompt, formatted_json

@@ -6,7 +6,6 @@ import os
 from streamlit_gsheets import GSheetsConnection
 
 conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(worksheet="Spawn")
 
 from generate_prompts import (
     get_json,
@@ -57,21 +56,13 @@ def append_data():
 
         df = pd.DataFrame([new_data])
 
-        sql = '''
-        INSERT INTO Spawn (prompt, formatted_json, action) 
-        VALUES (?, ?, ?)
-        '''
-
-        conn.query(
-            worksheet="Spawn",
-            sql=sql,
-            data=(new_data["prompt"], new_data["formatted_json"], new_data["action"])
-        )
-
+        existing_data = conn.read(worksheet="Spawn")
+        combined_data = existing_data + df.values.tolist()
+        conn.update(worksheet="Spawn", data=combined_data)
+        
         st.cache_data.clear()
         st.rerun()
         
-
 # App Title
 st.title("Prompt Generator")
 
@@ -81,43 +72,44 @@ col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     if st.button("Spawn", use_container_width=True):
         # get random move prompt
-        prompt = get_spawn()
+        #prompt = get_spawn()
+        prompt, formatted_json = get_spawn()
         update_text_field(prompt)
 
         # setup default move json
-        formatted_json = get_json("spawn")
+        #formatted_json = get_json("spawn")
         update_text_area(formatted_json)
 
 with col2:
     if st.button("Move", use_container_width=True):
-        prompt = get_move()
+        prompt, formatted_json = get_move()
         update_text_field(prompt)
 
-        formatted_json = get_json("move")
+        # formatted_json = get_json("move")
         update_text_area(formatted_json)
 
 with col3:
     if st.button("Remove", use_container_width=True):
-        prompt = get_remove()
+        prompt, formatted_json = get_remove()
         update_text_field(prompt)
 
-        formatted_json = get_json("remove")
+        #formatted_json = get_json("remove")
         update_text_area(formatted_json)
 
 with col4:
     if st.button("Rotate", use_container_width=True):
-        prompt = get_rotate()
+        prompt, formatted_json = get_rotate()
         update_text_field(prompt)
 
-        formatted_json = get_json("rotate")
+        # formatted_json = get_json("rotate")
         update_text_area(formatted_json)
 
 with col5:
     if st.button("Replace", use_container_width=True):
-        prompt = get_replace()
+        prompt, formatted_json = get_replace()
         update_text_field(prompt)
 
-        formatted_json = get_json("replace")
+        #formatted_json = get_json("replace")
         update_text_area(formatted_json)
 
 # Text Field (uses session state for dynamic updates)
