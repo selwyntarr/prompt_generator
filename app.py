@@ -3,11 +3,18 @@ import pandas as pd
 import json
 import os
 
+from streamlit_gsheets import GSheetsConnection
+
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read(worksheet="Spawn")
 
 from generate_prompts import (
     get_json,
     get_spawn,
-    get_remove
+    get_move,
+    get_remove,
+    get_rotate,
+    get_replace
 )
 
 # Initialize session state for the text input
@@ -45,7 +52,25 @@ def append_data():
             "formatted_json": json.dumps(data, separators=(',', ':')),
             "action": data["action"]
         }
+
         st.session_state.df = st.session_state.df._append(new_data, ignore_index=True)
+
+        df = pd.DataFrame([new_data])
+
+        sql = '''
+        INSERT INTO Spawn (prompt, formatted_json, action) 
+        VALUES (?, ?, ?)
+        '''
+
+        conn.query(
+            worksheet="Spawn",
+            sql=sql,
+            data=(new_data["prompt"], new_data["formatted_json"], new_data["action"])
+        )
+
+        st.cache_data.clear()
+        st.rerun()
+        
 
 # App Title
 st.title("Prompt Generator")
@@ -65,7 +90,11 @@ with col1:
 
 with col2:
     if st.button("Move", use_container_width=True):
-        update_text_field("Move button clicked!")
+        prompt = get_move()
+        update_text_field(prompt)
+
+        formatted_json = get_json("move")
+        update_text_area(formatted_json)
 
 with col3:
     if st.button("Remove", use_container_width=True):
@@ -73,15 +102,23 @@ with col3:
         update_text_field(prompt)
 
         formatted_json = get_json("remove")
-        update_text_field(formatted_json)
+        update_text_area(formatted_json)
 
 with col4:
     if st.button("Rotate", use_container_width=True):
-        update_text_field("Rotate button clicked!")
+        prompt = get_rotate()
+        update_text_field(prompt)
+
+        formatted_json = get_json("rotate")
+        update_text_area(formatted_json)
 
 with col5:
     if st.button("Replace", use_container_width=True):
-        update_text_field("Replace button clicked!")
+        prompt = get_replace()
+        update_text_field(prompt)
+
+        formatted_json = get_json("replace")
+        update_text_area(formatted_json)
 
 # Text Field (uses session state for dynamic updates)
 text_input = st.text_input("Prompt Sample:", value=st.session_state.text_field_value)

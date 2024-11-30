@@ -1,0 +1,8 @@
+{
+    "action": "rotate",
+    "parameters": {
+        "prefab": "object",
+        "axis": "axis",
+        "value": "1"
+    }
+}

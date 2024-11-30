@@ -1,0 +1,9 @@
+{
+    "action": "spawn",
+    "parameters": {
+        "prefab": "object",
+        "reference_object": "ref_obj",
+        "direction": "direction",
+        "value": "1"
+    }
+}

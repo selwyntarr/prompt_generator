@@ -1,0 +1,8 @@
+{
+    "action": "move",
+    "parameters": {
+        "prefab": "object",
+        "direction": "direction",
+        "value": "1"
+    }
+}

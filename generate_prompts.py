@@ -26,8 +26,37 @@ def get_spawn():
 
     return prompt
 
+def get_move():
+    prompt = random_move()
+
+    prompt = prompt.replace("object", random_object())
+    prompt = prompt.replace("direction", random_direction())
+    prompt = prompt.replace("num", random_num())
+
+    unit = random_unit().rstrip('es').rstrip('s') if "1" in prompt else random_unit()
+    prompt = prompt.replace("units", unit)
+
+    return prompt
+
 def get_remove():
     prompt = random_remove()
     prompt = prompt.replace("object", random_object())
+
+    return prompt
+
+def get_rotate():
+    prompt = random_rotate()
+
+    prompt = prompt.replace("object", random_object())
+    prompt = prompt.replace("x", random_axis())
+    prompt = prompt.replace("num", random_degrees())
+
+    return prompt
+
+def get_replace():
+    prompt = random_replace()
+
+    prompt = prompt.replace("object", random_object())
+    prompt = prompt.replace("ref_obj", random_object())
 
     return prompt
